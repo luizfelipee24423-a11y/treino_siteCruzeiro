@@ -1,0 +1,110 @@
+body {
+  background-color: rgb(172, 204, 252);
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.cabecalho {
+  background-color: rgb(50, 79, 243);
+  padding: 30px;
+  text-align: center;
+}
+
+.cabecalho h1 {
+  color: white;
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.cabecalho p {
+  color: white;
+  font-size: 22px;
+  margin: 0;
+}
+
+.faixa-clube {
+  background-color: rgb(55, 55, 240);
+  text-align: center;
+  padding: 50px;
+  margin-bottom: 10px;
+}
+
+.faixa-clube h2 {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.faixa-clube p {
+  color: whitesmoke;
+  margin: 0;
+}
+
+.tabela th {
+  background-color: blue;
+  color: white;
+  text-align: center;
+}
+
+.tabela td {
+  color: black;
+  text-align: center;
+}
+
+.jogador-card {
+  background-color: rgb(57, 60, 248);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.jogador-card img {
+  height: 220px;
+  object-fit: cover;
+  padding: 12px;
+  border-radius: 20px;
+}
+
+.jogador-card .card-title {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.jogador-card .card-text {
+  color: rgb(47, 0, 255);
+}
+
+.card h3 {
+  color: rgb(30, 60, 180);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.rodape {
+  background-color: rgb(11, 6, 255);
+  padding: 30px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.rodape p {
+  color: white;
+  margin: 0;
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .cabecalho h1 {
+    font-size: 30px;
+  }
+
+  .cabecalho p {
+    font-size: 18px;
+  }
+
+  .faixa-clube {
+    padding: 30px;
+  }
+}
