@@ -43,7 +43,7 @@ const jogadores = [
   },
   {
     nome: "Lucas Silva",
-    posicao: "Meia",
+    posicao: "Volante",
     numero: 16,
     descricao: "Meio-campista talentoso, conhecido por sua visão de jogo e passes precisos.",
     imagem: "img/lucas.jpg"
@@ -66,7 +66,11 @@ const jogadores = [
 
 const listaJogadores = document.getElementById("lista-jogadores");
 
-jogadores.forEach(function(player) {
+function renderizarJogadores(lista) {
+
+listaJogadores.innerHTML = "";
+
+lista.forEach(function(player) {
   const coluna = document.createElement("article");
   coluna.classList.add("col-md-6", "mb-4");
 
@@ -103,4 +107,32 @@ jogadores.forEach(function(player) {
   coluna.appendChild(card);
 
   listaJogadores.appendChild(coluna);
+  
 });
+}
+
+renderizarJogadores(jogadores);
+
+const campoPesquisa = document.getElementById("campo-pesquisa");
+
+campoPesquisa.addEventListener("input", function() {
+
+const textoPesquisa = campoPesquisa.value.toLowerCase();
+
+const resultadoPesquisa = jogadores.filter(function(player){
+
+
+return player.nome.toLowerCase().includes(textoPesquisa);
+
+});
+
+
+renderizarJogadores(resultadoPesquisa);
+
+});
+
+
+
+
+
+
