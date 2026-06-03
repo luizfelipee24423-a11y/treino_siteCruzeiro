@@ -108,3 +108,14 @@ body {
     padding: 30px;
   }
 }
+
+.setor{
+cursor: pointer;
+
+}
+
+.setor:hover{
+
+background-color: aqua;
+
+}

@@ -1,5 +1,6 @@
 const jogadores = [
   {
+    id: 1,
     nome: "Matheus Pereira",
     posicao: "Meia",
     numero: 10,
@@ -7,6 +8,8 @@ const jogadores = [
     imagem: "img/matheuspereira.jpg"
   },
   {
+    id: 2,
+
     nome: "Gerson",
     posicao: "Volante",
     numero: 8,
@@ -14,6 +17,8 @@ const jogadores = [
     imagem: "img/gerson.jpg"
   },
   {
+    id: 3,
+
     nome: "Kaio Jorge",
     posicao: "Atacante",
     numero: 9,
@@ -21,6 +26,7 @@ const jogadores = [
     imagem: "img/kj.jpg"
   },
   {
+    id: 4,
     nome: "Fagner",
     posicao: "Lateral",
     numero: 23,
@@ -28,6 +34,7 @@ const jogadores = [
     imagem: "img/fagner.jpg"
   },
   {
+      id: 5,
     nome: "Cássio",
     posicao: "Goleiro",
     numero: 1,
@@ -35,6 +42,7 @@ const jogadores = [
     imagem: "img/cassio.jpg"
   },
   {
+    id: 6,
     nome: "Fabricio Bruno",
     posicao: "Zagueiro",
     numero: 15,
@@ -42,6 +50,7 @@ const jogadores = [
     imagem: "img/fabbruno.jpg"
   },
   {
+    id: 7,
     nome: "Lucas Silva",
     posicao: "Volante",
     numero: 16,
@@ -49,6 +58,7 @@ const jogadores = [
     imagem: "img/lucas.jpg"
   },
   {
+    id: 8,
     nome: "Lucas Romero",
     posicao: "Volante",
     numero: 29,
@@ -56,6 +66,7 @@ const jogadores = [
     imagem: "img/romero.jpg"
   },
   {
+    id: 9,
     nome: "Villalba",
     posicao: "Zagueiro",
     numero: 25,
@@ -63,6 +74,8 @@ const jogadores = [
     imagem: "img/villalba.jpg"
   }
 ];
+
+
 
 const listaJogadores = document.getElementById("lista-jogadores");
 
@@ -97,9 +110,15 @@ lista.forEach(function(player) {
   descricao.classList.add("card-text");
   descricao.textContent = player.descricao;
 
+  const botaoDetalhes = document.createElement("a");
+botaoDetalhes.classList.add("btn", "btn-light");
+botaoDetalhes.textContent = "Ver Detalhes";
+botaoDetalhes.href = "detalhes.html?id=" + player.id;
+
   cardBody.appendChild(titulo);
   cardBody.appendChild(posicao);
   cardBody.appendChild(descricao);
+  cardBody.appendChild(botaoDetalhes);
 
   card.appendChild(imagem);
   card.appendChild(cardBody);
@@ -122,7 +141,7 @@ const textoPesquisa = campoPesquisa.value.toLowerCase();
 const resultadoPesquisa = jogadores.filter(function(player){
 
 
-return player.nome.toLowerCase().includes(textoPesquisa);
+return player.nome.toLowerCase().includes(textoPesquisa) || player.posicao.toLowerCase().includes(textoPesquisa) || player.numero.toString().includes(textoPesquisa);
 
 });
 
@@ -131,8 +150,41 @@ renderizarJogadores(resultadoPesquisa);
 
 });
 
+const setores = document.querySelectorAll(".setor");
+
+setores.forEach(function(setor) {
+
+
+setor.addEventListener("click",function(){
+
+const posicaoClicada = setor.dataset.posicao;
+
+const jogadoresFiltrados = jogadores.filter(function(player){
+
+return player.posicao === posicaoClicada;
 
 
 
+});
+
+renderizarJogadores(jogadoresFiltrados);
+
+});
 
 
+
+});
+
+const parametros = new URLSearchParams(window.location.search)
+
+const idJogador = Number(parametros.get("id"));
+
+console.log(idJogador);
+
+const jogadorSelecionado = jogadores.find(function(player){
+
+  
+  return player.id === idJogador;
+  
+
+});
