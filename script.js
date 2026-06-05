@@ -111,7 +111,7 @@ lista.forEach(function(player) {
   descricao.textContent = player.descricao;
 
   const botaoDetalhes = document.createElement("a");
-botaoDetalhes.classList.add("btn", "btn-light");
+botaoDetalhes.classList.add("btn", "btn-primary");
 botaoDetalhes.textContent = "Ver Detalhes";
 botaoDetalhes.href = "detalhes.html?id=" + player.id;
 

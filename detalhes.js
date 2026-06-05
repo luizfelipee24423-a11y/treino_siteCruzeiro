@@ -94,8 +94,78 @@ return player.id === idJogador;
 
 });
 
+
+
 console.log(jogadorSelecionado);
 
 const detalhesJogador = document.getElementById("detalhes-jogador");
 
-detalhesJogador.textContent = jogadorSelecionado.nome + " - " + jogadorSelecionado.posicao + " - " + jogadorSelecionado.numero;
+if (!jogadorSelecionado) {
+
+
+  detalhesJogador.textContent = "Jogador não encontrado.";
+  throw new Error("Jogador não encontrado.");
+}
+
+
+
+
+function renderizarDetalhesJogador(jogador) {
+
+const voltar = document.createElement("button");
+voltar.classList.add("btn", "btn-primary", "botao-voltar");
+voltar.textContent = "Voltar";
+voltar.addEventListener("click", function() {
+
+window.history.back();
+
+});
+
+
+detalhesJogador.appendChild(voltar);
+
+
+const card = document.createElement("div");
+card.classList.add("card-detalhes");
+
+
+const titulo = document.createElement("h2");
+titulo.classList.add("titulo-jogador");
+titulo.textContent = jogador.nome;
+
+const imagem = document.createElement("img");
+imagem.classList.add("imagem-jogador");
+imagem.src = jogador.imagem;
+
+const descricao = document.createElement("p");
+descricao.textContent = jogador.descricao;
+descricao.classList.add("descricao-jogador");
+
+const camisa = document.createElement("p");
+camisa.textContent = "Número da camisa: " + jogador.numero;
+camisa.classList.add("camisa-jogador");
+
+const posicao = document.createElement("p");
+posicao.textContent = "Posição: " + jogador.posicao;
+posicao.classList.add("posicao-jogador");
+
+
+
+card.appendChild(titulo);
+card.appendChild(camisa);
+card.appendChild(posicao);
+card.appendChild(imagem);
+card.appendChild(descricao);
+
+
+
+detalhesJogador.appendChild(card);
+
+
+
+}
+
+renderizarDetalhesJogador(jogadorSelecionado);
+
+
+
