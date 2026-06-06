@@ -43,7 +43,7 @@
     <div class="row g-4">
 
       <aside class="col-lg-3">
-        <section class="card p-3 mb-4">
+        <section id="pesquisa" class="card p-3 mb-4">
           <h3>Pesquisa</h3>
           <input id="campo-pesquisa" type="text" class="form-control mb-2" placeholder="Buscar jogador">
           <button class="btn btn-primary w-100">OK</button>
@@ -59,49 +59,19 @@
 
       <main class="col-lg-6">
 
-        <section class="mb-4">
-          <div class="card p-3">
-            <h3 class="mb-3">Tabela do elenco</h3>
+        <table class="table table-striped table-bordered tabela">
 
-            <div class="table-responsive">
-              <table class="table table-striped table-bordered tabela">
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>Posição</th>
-                  </tr>
-                </thead>
+          <thead>
 
-                <tbody>
-                  <tr>
-                    <td>Matheus Pereira</td>
-                    <td>Meia</td>
-                  </tr>
+              <tr><th>Nome</th><th>Posição</th></tr>
 
-                  <tr>
-                    <td>Gerson</td>
-                    <td>Volante</td>
-                  </tr>
 
-                  <tr>
-                    <td>Kaio Jorge</td>
-                    <td>Atacante</td>
-                  </tr>
+          </thead>  
 
-                  <tr>
-                    <td>Fagner</td>
-                    <td>Lateral</td>
-                  </tr>
+          <tbody id="tabela-jogadores"></tbody>
 
-                  <tr>
-                    <td>Cássio</td>
-                    <td>Goleiro</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+          
+        </table>
 
         <section id="lista-jogadores" class="row g-4"></section>
 

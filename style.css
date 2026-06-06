@@ -214,3 +214,51 @@ transform:scale(1.20);
   align-items: center;
 
 }
+
+
+.botao-favorito{
+
+  margin-top: 20px;
+  width: 150px;
+  color: rgb(241, 241, 241);
+  background-color: #1114f5;
+  border: none;
+  border-radius: 15px;
+  font-size:15px;
+}
+
+.botao-favorito:hover{
+  cursor: pointer;
+  transform:scale(1.20);
+  background-color: rgb(78, 173, 157);
+}
+
+.jogador-card.card-favorito{
+
+border:4px solid gold;
+box-shadow: gold;
+
+
+
+}
+
+.selo-favorito{
+
+background-color: gold;
+text-align: center;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-weight: bold;
+padding: 3px 0px;
+}
+
+
+.mostrar-favoritos{
+
+background-color: gold;
+padding: 10px;
+margin: 20px 0;
+border-radius: 10px;
+border: none;
+
+
+}

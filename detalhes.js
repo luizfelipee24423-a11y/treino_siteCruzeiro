@@ -72,9 +72,80 @@ const jogadores = [
     numero: 25,
     descricao: "Zagueiro experiente, com boa leitura de jogo e habilidade com os pés.",
     imagem: "img/villalba.jpg"
-  }
-];
+  },
+{
+  id: 10,
+    nome: "William",
+    posicao: "Lateral",
+    numero: 12,
+    descricao: "Lateral experiente, com bom cruzamento e apoio ao ataque.",
+    imagem: "img/william.jpg"
 
+},
+
+{
+ id: 11,
+    nome: "Johnatan Jesus",
+    posicao: "Zagueiro",
+    numero: 34,
+    descricao: "Zagueiro Jovem, com boa leitura de jogo e habilidade com os pés.",
+    imagem: "img/jj.jpg"
+
+
+},
+
+{
+ id: 12,
+    nome: "Arroyo",
+    posicao: "Atacante",
+    numero: 99,
+    descricao: "Atacante jovem e promissor, com boa finalização e movimentação.",
+    imagem: "img/arroyo.jpg"
+
+
+},
+
+{
+
+ id: 13,
+    nome: "Sinisterra",
+    posicao: "Atacante",
+    numero: 17,
+    descricao: "Atacante jovem e promissor, rápido e habilidoso.",
+    imagem: "img/sinisterra.jpg"
+
+},
+{
+ id: 14,
+    nome: "Christian",
+    posicao: "Volante",
+    numero: 88,
+    descricao: "Jogador coringa, atua em várias posições, com boa visão de jogo e passes precisos.",
+    imagem: "img/christian.jpg"
+},
+
+{
+
+ id: 15,
+    nome: "Kaiki",
+    posicao: "Lateral",
+    numero: 6,
+    descricao: "Lateral Jovem, com bom apoio ao ataque e marcação sólida.",
+    imagem: "img/kaiki.jpg"
+
+},
+
+{
+id: 16,
+    nome: "Otávio",
+    posicao: "Goleiro",
+    numero: 81,
+    descricao: "Goleiro Jovem, cria da toca e potencial para se tornar um grande goleiro no futuro.",
+    imagem: "img/otavio.jpg"
+
+
+}
+];
 
 
 
@@ -112,9 +183,62 @@ if (!jogadorSelecionado) {
 
 function renderizarDetalhesJogador(jogador) {
 
+
+const botaoFavorito = document.createElement("button");
+botaoFavorito.classList.add("btn", "btn-warning" , "botao-favorito");
+botaoFavorito.textContent = "Adicionar aos Favoritos";
+
+
+let favoritos = JSON.parse(localStorage.getItem("favoritos"));
+
+if (favoritos === null) {
+  favoritos = [];
+}
+
+if (favoritos.includes(jogador.id)) {
+  botaoFavorito.textContent = "Remover dos Favoritos";
+} else {
+  botaoFavorito.textContent = "Adicionar aos Favoritos";
+}
+
+
+
+
+botaoFavorito.addEventListener("click" , function() {
+
+if(favoritos.includes(jogador.id)){
+
+  const novosFavoritos = favoritos.filter(function(id){
+
+  return id !== jogador.id;
+
+  });
+
+  favoritos = novosFavoritos;
+
+alert(jogador.nome + " removido dos favoritos!" );
+localStorage.setItem("favoritos", JSON.stringify(novosFavoritos));
+console.log(novosFavoritos);
+botaoFavorito.textContent = "Adicionar aos Favoritos";
+}
+
+else{
+alert(jogador.nome + " adicionado aos favoritos!" );
+favoritos.push(jogador.id);
+localStorage.setItem("favoritos", JSON.stringify(favoritos));
+botaoFavorito.textContent = "Remover dos Favoritos";
+
+console.log(favoritos);
+
+}
+
+});
+
+
 const voltar = document.createElement("button");
 voltar.classList.add("btn", "btn-primary", "botao-voltar");
 voltar.textContent = "Voltar";
+
 voltar.addEventListener("click", function() {
 
 window.history.back();
@@ -156,6 +280,7 @@ card.appendChild(camisa);
 card.appendChild(posicao);
 card.appendChild(imagem);
 card.appendChild(descricao);
+card.appendChild(botaoFavorito);
 
 
 

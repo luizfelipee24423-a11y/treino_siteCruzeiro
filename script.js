@@ -72,10 +72,123 @@ const jogadores = [
     numero: 25,
     descricao: "Zagueiro experiente, com boa leitura de jogo e habilidade com os pés.",
     imagem: "img/villalba.jpg"
-  }
+  },
+{
+  id: 10,
+    nome: "William",
+    posicao: "Lateral",
+    numero: 12,
+    descricao: "Lateral experiente, com bom cruzamento e apoio ao ataque.",
+    imagem: "img/william.jpg"
+
+},
+
+{
+ id: 11,
+    nome: "Johnatan Jesus",
+    posicao: "Zagueiro",
+    numero: 34,
+    descricao: "Zagueiro Jovem, com boa leitura de jogo e habilidade com os pés.",
+    imagem: "img/jj.jpg"
+
+
+},
+
+{
+ id: 12,
+    nome: "Arroyo",
+    posicao: "Atacante",
+    numero: 99,
+    descricao: "Atacante jovem e promissor, com boa finalização e movimentação.",
+    imagem: "img/arroyo.jpg"
+
+
+},
+
+{
+
+ id: 13,
+    nome: "Sinisterra",
+    posicao: "Atacante",
+    numero: 17,
+    descricao: "Atacante jovem e promissor, rápido e habilidoso.",
+    imagem: "img/sinisterra.jpg"
+
+},
+{
+ id: 14,
+    nome: "Christian",
+    posicao: "Volante",
+    numero: 88,
+    descricao: "Jogador coringa, atua em várias posições, com boa visão de jogo e passes precisos.",
+    imagem: "img/christian.jpg"
+},
+
+{
+
+ id: 15,
+    nome: "Kaiki",
+    posicao: "Lateral",
+    numero: 6,
+    descricao: "Lateral Jovem, com bom apoio ao ataque e marcação sólida.",
+    imagem: "img/kaiki.jpg"
+
+},
+
+{
+id: 16,
+    nome: "Otávio",
+    posicao: "Goleiro",
+    numero: 81,
+    descricao: "Goleiro Jovem, cria da toca e potencial para se tornar um grande goleiro no futuro.",
+    imagem: "img/otavio.jpg"
+
+
+}
 ];
 
+const tabelaJogadores = document.getElementById("tabela-jogadores");  
 
+
+
+jogadores.forEach(function(player) {
+
+const linha= document.createElement("tr");
+
+const nome = document.createElement("td");
+const posicao = document.createElement("td");
+
+nome.textContent = player.nome;
+posicao.textContent = player.posicao;
+
+linha.appendChild(nome);
+linha.appendChild(posicao);
+tabelaJogadores.appendChild(linha);
+
+});
+
+const pesquisa = document.getElementById("pesquisa");
+
+const botaoFavorito = document.createElement("button");
+botaoFavorito.classList.add("mostrar-favoritos");
+botaoFavorito.textContent = "Mostrar Favoritos";
+
+pesquisa.appendChild(botaoFavorito);
+
+botaoFavorito.addEventListener("click", function() {
+
+let favoritos = JSON.parse(localStorage.getItem("favoritos"));
+
+const jogadoresFavoritos = jogadores.filter(function(player){
+
+
+return favoritos.includes(player.id);
+
+});
+
+renderizarJogadores(jogadoresFavoritos);
+
+});
 
 const listaJogadores = document.getElementById("lista-jogadores");
 
@@ -89,6 +202,24 @@ lista.forEach(function(player) {
 
   const card = document.createElement("div");
   card.classList.add("card", "h-100", "jogador-card");
+
+ let favoritos = JSON.parse(localStorage.getItem("favoritos"));
+
+ if(favoritos===null){
+
+  favoritos = [];
+ }
+
+  if(favoritos.includes(player.id)){
+    card.classList.add("card-favorito");
+
+    const seloFavorito= document.createElement("p");
+    seloFavorito.classList.add("selo-favorito");
+    seloFavorito.textContent = "Favorito";
+
+    card.appendChild(seloFavorito);
+
+  }
 
   const imagem = document.createElement("img");
   imagem.classList.add("card-img-top");
@@ -188,3 +319,4 @@ const jogadorSelecionado = jogadores.find(function(player){
   
 
 });
+
