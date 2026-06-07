@@ -262,3 +262,58 @@ border: none;
 
 
 }
+
+.area-comentarios{
+
+width:100%;
+margin-top: 30px;
+
+}
+
+.area-comentarios h3{
+
+text-align: center;
+color: blue;
+margin-bottom: 15px;
+
+}
+
+.campo-comentario{
+
+
+width: 80%; 
+height:100px;
+border-radius: 10px;
+padding: 30px;
+border: 2px solid blue;
+font-size: 16px;
+
+
+}
+
+.botao-comentar{
+
+margin-top:10px;
+width:89%;
+background-color: rgb(232, 236, 235);
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-weight: bold;
+
+}
+
+.lista-comentarios{
+
+margin-top:20px;
+
+}
+
+.comentario{
+
+background-color: #1114f5;
+color: white;
+padding: 10px;
+border-radius:10px ;
+margin-bottom: 10px;
+font-weight: bold;
+
+}

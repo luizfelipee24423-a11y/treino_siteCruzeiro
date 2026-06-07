@@ -203,12 +203,8 @@ lista.forEach(function(player) {
   const card = document.createElement("div");
   card.classList.add("card", "h-100", "jogador-card");
 
- let favoritos = JSON.parse(localStorage.getItem("favoritos"));
+ let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
- if(favoritos===null){
-
-  favoritos = [];
- }
 
   if(favoritos.includes(player.id)){
     card.classList.add("card-favorito");
@@ -267,7 +263,7 @@ const campoPesquisa = document.getElementById("campo-pesquisa");
 
 campoPesquisa.addEventListener("input", function() {
 
-const textoPesquisa = campoPesquisa.value.toLowerCase();
+const textoPesquisa = campoPesquisa.value.trim().toLowerCase();
 
 const resultadoPesquisa = jogadores.filter(function(player){
 

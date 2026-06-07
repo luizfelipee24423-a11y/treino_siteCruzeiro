@@ -178,6 +178,9 @@ if (!jogadorSelecionado) {
   throw new Error("Jogador não encontrado.");
 }
 
+let comentarios = JSON.parse(localStorage.getItem("comentarios"))|| [];
+
+
 
 
 
@@ -189,11 +192,7 @@ botaoFavorito.classList.add("btn", "btn-warning" , "botao-favorito");
 botaoFavorito.textContent = "Adicionar aos Favoritos";
 
 
-let favoritos = JSON.parse(localStorage.getItem("favoritos"));
-
-if (favoritos === null) {
-  favoritos = [];
-}
+let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
 if (favoritos.includes(jogador.id)) {
   botaoFavorito.textContent = "Remover dos Favoritos";
@@ -286,9 +285,95 @@ card.appendChild(botaoFavorito);
 
 detalhesJogador.appendChild(card);
 
+const areaComentarios = document.createElement("section");
+areaComentarios.classList.add("area-comentarios");
+
+const tituloComentarios = document.createElement("h3");
+tituloComentarios.textContent = "Comentários";
+
+const campoComentario = document.createElement("textarea");
+campoComentario.classList.add("campo-comentario");
+campoComentario.placeholder = "Escreva o que acha sobre " + jogador.nome + "...";
+
+const botaoComentar = document.createElement("button");
+botaoComentar.classList.add("btn", "btn-success", "botao-comentar");
+botaoComentar.textContent = "Comentar";
+
+botaoComentar.addEventListener("click", function() {
+
+const texto = campoComentario.value.trim();
+
+
+if(texto === ""){
+alert("O campo de comentário não pode estar vazio!");
+return;
+}
+
+console.log(texto);
+
+const novoComentario = {
+
+id: Date.now(),
+jogadorId: jogador.id,
+texto: texto
+}
+
+console.log(novoComentario);
+
+comentarios.push(novoComentario);
+
+localStorage.setItem("comentarios",JSON.stringify(comentarios));
+
+console.log(comentarios);
+
+renderizarComentarios();
+
+campoComentario.value = "";
+
+
+});
+
+const listaComentarios = document.createElement("div");
+listaComentarios.classList.add("lista-comentarios");
+
+areaComentarios.appendChild(tituloComentarios);
+areaComentarios.appendChild(campoComentario);
+areaComentarios.appendChild(botaoComentar);
+areaComentarios.appendChild(listaComentarios);
+
+card.appendChild(areaComentarios);
+
+renderizarComentarios();
+
+function renderizarComentarios(){
+listaComentarios.innerHTML = "";
+
+const comentariosDoJogador = comentarios.filter(function(comentario){
+
+return comentario.jogadorId === jogador.id;
+
+});
+
+
+comentariosDoJogador.forEach(function(comentario){
+
+const comentarioElemento = document.createElement("p");
+comentarioElemento.classList.add("comentario");
+comentarioElemento.textContent = comentario.texto;
+
+listaComentarios.appendChild(comentarioElemento);
+
+
+});
 
 
 }
+
+
+}
+
+
+
 
 renderizarDetalhesJogador(jogadorSelecionado);
 
