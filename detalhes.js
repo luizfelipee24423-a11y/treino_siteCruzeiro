@@ -315,7 +315,8 @@ const novoComentario = {
 
 id: Date.now(),
 jogadorId: jogador.id,
-texto: texto
+texto: texto,
+curtidas: 0
 }
 
 console.log(novoComentario);
@@ -354,21 +355,135 @@ return comentario.jogadorId === jogador.id;
 
 });
 
+if(comentariosDoJogador.length===0)
+{
+
+  const mensagem = document.createElement("p");
+  mensagem.classList.add("nenhum-comentario");
+  mensagem.textContent = "nenhum comentario"
+  listaComentarios.appendChild(mensagem);
+  return;
+}
+
+
+
 
 comentariosDoJogador.forEach(function(comentario){
 
-const comentarioElemento = document.createElement("p");
+const comentarioElemento = document.createElement("div");
 comentarioElemento.classList.add("comentario");
-comentarioElemento.textContent = comentario.texto;
+
+const textoComentario = document.createElement("p");
+textoComentario.classList.add("texto-comentario");
+textoComentario.textContent = comentario.texto;
+
+comentarioElemento.appendChild(textoComentario);
+
+const botaoCurtir = document.createElement("button");
+botaoCurtir.textContent = "Curtir";
+botaoCurtir.classList.add("botao-curtir");
+
+
+const infoCurtidas = document.createElement("p");
+infoCurtidas.classList.add("info-curtidas");
+infoCurtidas.textContent = "❤ " + comentario.curtidas + " curtidas";
+
+const areaCurtidas = document.createElement("div");
+areaCurtidas.classList.add("area-curtidas");
+
+areaCurtidas.appendChild(infoCurtidas);
+areaCurtidas.appendChild(botaoCurtir);
+comentarioElemento.appendChild(areaCurtidas);
+
+const conteudoComentario = document.createElement("div");
+conteudoComentario.classList.add("conteudo-comentario");
+
+conteudoComentario.appendChild(textoComentario);
+conteudoComentario.appendChild(areaCurtidas);
+
+comentarioElemento.appendChild(conteudoComentario);
+
+botaoCurtir.addEventListener("click",function(){
+
+comentario.curtidas++;
+
+localStorage.setItem("comentarios", JSON.stringify(comentarios));
+
+renderizarComentarios();
+});
+
+const botaoExcluir = document.createElement("button");
+botaoExcluir.classList.add("botao-excluir");
+botaoExcluir.textContent = "Excluir";
+
+const botaoEditar = document.createElement("button");
+botaoEditar.textContent = "Editar";
+botaoEditar.classList.add("botao-editar");
+
+botaoEditar.addEventListener("click", function(){
+
+  const novoTexto = prompt("edite seu comentário: " , comentario.texto)
+  console.log(novoTexto);
+
+  if(novoTexto===null){
+
+    return;
+  }
+
+  if(novoTexto.trim()===""){
+
+    alert("o comentário nao pode ficar vazio. ");
+    return;
+
+  }
+
+  comentario.texto = novoTexto.trim();
+  localStorage.setItem("comentarios" , JSON.stringify(comentarios));
+
+  renderizarComentarios();
+
+});
+
+
+const acoes = document.createElement("div");
+acoes.classList.add("acoes");
+
+
+acoes.appendChild(botaoEditar);
+acoes.appendChild(botaoExcluir);
+
+comentarioElemento.appendChild(acoes);
 
 listaComentarios.appendChild(comentarioElemento);
 
+botaoExcluir.addEventListener("click", function(){
+
+const confirmar = confirm("Quer excluir mesmo? ");
+
+if(!confirmar){
+
+
+return;
+
+}
+
+
+comentarios = comentarios.filter(function(item){
+
+return item.id !== comentario.id;
+
+});
+
+localStorage.setItem("comentarios", JSON.stringify(comentarios));
+
+renderizarComentarios();
+
+})
 
 });
 
 
 }
-
 
 }
 

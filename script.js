@@ -147,7 +147,118 @@ id: 16,
 }
 ];
 
+const slides = [
+
+{
+titulo: "Mineirão",
+descricao: "A casa do cruzeiro.",
+imagem: "img/mineirao.jpg"
+
+},
+
+{
+titulo: "Títulos",
+descricao: "O porque somos o maior de minas.",
+imagem: "img/titulos.jpg"
+
+},
+
+{
+titulo: "Próximo jogo na libertadores",
+descricao: "Cruzeiro x Flamengo",
+imagem: "img/proximojogo.jpg"
+}
+
+]
+
+const carrosselHome = document.getElementById("carrossel-home");
+let slideAtual =0;
+
+function renderizarCarrossel()
+{
+carrosselHome.innerHTML = "";
+
+const slide = slides[slideAtual];
+
+const titulo = document.createElement("h2");
+titulo.textContent = slide.titulo;
+
+const descricao = document.createElement("p");
+descricao.textContent = slide.descricao;
+
+const imagem = document.createElement("img");
+imagem.src = slide.imagem;
+imagem.alt = slide.titulo;
+
+const botaoAnterior = document.createElement("button");
+botaoAnterior.textContent = "Anterior";
+
+const botaoProximo = document.createElement("button");
+botaoProximo.textContent = "Próximo";
+
+botaoProximo.addEventListener("click", function(){
+
+slideAtual++;
+
+if(slideAtual>=slides.length){
+
+  slideAtual=0;
+}
+renderizarCarrossel();
+
+}
+);
+
+botaoAnterior.addEventListener("click", function(){
+
+slideAtual--;
+
+if(slideAtual<0)
+{
+
+slideAtual= slides.length-1;
+
+}
+
+renderizarCarrossel();
+});
+
+imagem.classList.add("imagem-carrossel");
+
+botaoAnterior.classList.add("botao-carrossel", "botao-anterior");
+botaoProximo.classList.add("botao-carrossel", "botao-proximo");
+
+carrosselHome.appendChild(botaoAnterior);
+carrosselHome.appendChild(botaoProximo);
+carrosselHome.appendChild(titulo);
+carrosselHome.appendChild(imagem);
+carrosselHome.appendChild(descricao);
+
+
+
+}
+
+
+
+carrosselHome.classList.add("carrossel-home");
+
+renderizarCarrossel();
+
+setInterval(function(){
+
+slideAtual++;
+
+if(slideAtual>=slides.length){
+
+slideAtual=0;
+}
+renderizarCarrossel();
+
+},5000);
+
 const tabelaJogadores = document.getElementById("tabela-jogadores");  
+
+carrosselHome.classList.add("carrossel-home");
 
 
 
